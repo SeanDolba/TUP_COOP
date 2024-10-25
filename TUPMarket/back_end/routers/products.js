@@ -4,15 +4,15 @@ const mysql = require('mysql');
 const db = require('../dbConfig');
 
 router.get(`/`, (req, res) => {
-    const userList = 'SELECT * FROM users';
+    const productsList = 'SELECT * FROM products';
 
-    db.query(userList, (err, results) => {
+    db.query(productsList, (err, results) => {
         if (err) {
             console.error('Error retrieving data:', err);
             return res.status(500).send('An error occurred while retrieving data.');
         }
 
-        if(!userList){
+        if(!productsList){
             res.status(500).json({success: false})
         }
 
@@ -21,7 +21,7 @@ router.get(`/`, (req, res) => {
 });
 
 router.post(`/`, (req, res) => {
-    
+   
 });
 
 module.exports = router;

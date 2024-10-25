@@ -7,11 +7,13 @@ const db = require('./dbConfig');
 
 //Routes
 const usersRoute = require('./routers/users');
+const productsRoute = require('./routers/products');
 
 const api = process.env.API_URL;
 
 //routers (lagi dapat nasa pinakababa)
 app.use(`${api}/users`, usersRoute);
+app.use(`${api}/products`, productsRoute);
 
 //middleware methods
 app.use(bodyParser.json());
