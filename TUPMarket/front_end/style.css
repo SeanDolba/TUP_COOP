@@ -177,7 +177,7 @@ body {
     width: 23%;
     min-width: 250px;
     padding: 10px 12px;
-    border: 1px solid #cce7d0;
+    border: 1px solid #000000;
     border-radius: 25px;
     cursor: pointer;
     box-shadow: 20px 20px 30px rgba(0,0,0,0.02);
@@ -220,7 +220,7 @@ body {
     padding-top: 7px;
     font-size: 15px;
     font-weight: 700;
-    color: #088178;
+    color: #020202;
 }
 
 #product1 .pro .cart{
@@ -229,9 +229,9 @@ body {
     height: 40px;
     line-height: 40px;
     border-radius: 50px;
-    background-color: #e8f6ea;
-    color: #088178;
-    border: 1px solid #cce7d0;
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #020202;
     position: absolute;
     bottom: 60px;
     right: 20px;                                  
