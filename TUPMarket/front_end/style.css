@@ -36,7 +36,6 @@ p{
     font-size: 35px;
     color: #465b52;
     margin: 15px 0 20px 0;
-    text-align: right;
     padding-right: 20px;
     margin-left: auto;
     margin-right: 0;
@@ -44,6 +43,9 @@ p{
 
 .section-p1 {
     padding: 40px 80px;
+    justify-content: space-between; /* Space between columns */
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px;
 }
 
 .section-m1 {
@@ -238,17 +240,16 @@ body {
 }
 
 
-
-
 .footer-logo {
     width: 100px;      /* Adjust size as needed */
     height: auto;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .follow {
     margin-top: 20px;
+    text-align: left;
 }
 
 .icon {
@@ -258,5 +259,52 @@ body {
 
 .icon i {
     font-size: 24px;
-    color: #4267B2; /* Facebook blue color */
+    color: #000000;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f8f8;
+    gap: 10px;
+}
+
+footer .col{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+footer h4 {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+footer p {
+    font-size: 13px;
+    margin: 0  0 0 8px 0;
+}
+
+footer a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #222
+    margin-bottom: 10px;
+}
+
+.follow {
+    text-align: left;
+    display: flex;
+    flex-direction: column; /* Stack follow us vertically */
+}
+
+.col {
+    flex: 1; /* Makes each column take equal space */
+    margin: 10px;
+    padding: 0 10px; /* Adds some padding between columns */
 }
