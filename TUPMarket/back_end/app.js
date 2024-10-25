@@ -4,6 +4,10 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mysql = require('mysql');
 const db = require('./dbConfig');
+const cors = require('cors');
+
+app.use(cors());
+app.options('*', cors())
 
 //Routes (Add new routes here)
 const usersRoute = require('./routers/users');
