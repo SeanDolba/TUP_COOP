@@ -21,13 +21,28 @@ const api = process.env.API_URL;
 
 //routers (lagi dapat nasa pinakababa)
 app.use(`${api}/users`, usersRoute);
+console.log(`Connected route: ${api}/users`);
+
 app.use(`${api}/products`, productsRoute);
+console.log(`Connected route: ${api}/products`);
+
 app.use(`${api}/reviews`, reviewsRoute);
-app.use(`${api}/orders_items`, order_itemsRoute);
+console.log(`Connected route: ${api}/reviews`);
+
+app.use(`${api}/order_items`, order_itemsRoute);
+console.log(`Connected route: ${api}/order_items`);
+
 app.use(`${api}/orders`, ordersRoute);
+console.log(`Connected route: ${api}/orders`);
+
 app.use(`${api}/categories`, categoriesRoute);
+console.log(`Connected route: ${api}/categories`);
+
 app.use(`${api}/cart_items`, cart_itemsRoute);
+console.log(`Connected route: ${api}/cart_items`);
+
 app.use(`${api}/cart`, cartRoute);
+console.log(`Connected route: ${api}/cart`);
 
 
 //middleware methods
