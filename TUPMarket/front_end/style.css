@@ -282,11 +282,14 @@ footer .col {
     flex: 1;
     margin: 10px;
     padding: 0 10px;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 footer h4 {
     font-size: 14px;
     padding-bottom: 20px;
+
 }
 
 footer p {
@@ -294,13 +297,16 @@ footer p {
     margin: 0  0 0 8px 0;
 }
 
-footer a {
-    font-size: 13px;
+footer a{
+    font-size: 15px;
     text-decoration: none;
     color: #222
-    margin-bottom: 10px;
+
 }
 
+footer a:hover {
+    color: #ce1414;
+}
 .follow {
     margin-top: 10px;
     text-align: left; /* Align content to the left */
@@ -311,7 +317,7 @@ footer a {
 .col {
     flex: 1; /* Makes each column take equal space */
     margin: 10px;
-    padding: 0 10px; /* Adds some padding between columns */
+    padding: 0 20px; /* Adds some padding between columns */
 }
 
 footer .{
