@@ -7,7 +7,7 @@ const db = require('./dbConfig');
 const cors = require('cors');
 
 app.use(cors());
-app.options('*', cors())
+app.options('*', cors());
 
 //Routes (Add new routes here)
 const usersRoute = require('./routers/users');
