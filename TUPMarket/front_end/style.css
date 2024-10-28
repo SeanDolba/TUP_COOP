@@ -7,8 +7,8 @@
 }
 
 h1{
-    font-size: 70px;
-    line-height: 80px;
+    font-size: 60px;
+    line-height: 90px;
     color: #222
 }
 
@@ -36,7 +36,6 @@ p{
     font-size: 35px;
     color: #465b52;
     margin: 15px 0 20px 0;
-    text-align: right;
     padding-right: 20px;
     margin-left: auto;
     margin-right: 0;
@@ -44,6 +43,9 @@ p{
 
 .section-p1 {
     padding: 40px 80px;
+    justify-content: space-between; /* Space between columns */
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px;
 }
 
 .section-m1 {
@@ -104,10 +106,6 @@ body {
     left: 20px;
 }
 
-
-
-
-
 #hero{
     background-image: url("tupleftlogo.png");
     height: 100vh;
@@ -141,6 +139,7 @@ body {
 
 }
 #hero button {
+
     background-image: url("redbutton.png");
     background-color: transparent;
     background-size: 200% auto;
@@ -148,18 +147,28 @@ body {
     background-position: center;
     border: 0;
     color: #f3ebeb;
-    padding: 20px 50px 14px 50px;
+    padding: 20px; /* Adjusted padding for uniformity */
     font-weight: 700;
-    font-size: 35px;
-    align-items: center;
-    text-align: center;
-    padding-right: 20px;
+    font-size: 25px;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 60px; /* Set a fixed height */
+    width: auto; /* Auto width */
     margin-left: auto;
     margin-right: 0;
 }
 
+
 #product1{
     text-align: center;
+}
+
+#product1 .pro-container{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    flex-wrap: wrap;
 }
 
 #product1 p {
@@ -170,12 +179,13 @@ body {
     width: 23%;
     min-width: 250px;
     padding: 10px 12px;
-    border: 1px solid #cce7d0;
+    border: 1px solid #000000;
     border-radius: 25px;
     cursor: pointer;
     box-shadow: 20px 20px 30px rgba(0,0,0,0.02);
     margin: 15px 0;
     transition: 0.2s ease;
+    position: relative;
 }
 
 #product1 .pro:hover{
@@ -212,5 +222,108 @@ body {
     padding-top: 7px;
     font-size: 15px;
     font-weight: 700;
-    color: #088178;
+    color: #020202;
+}
+
+#product1 .pro .cart{
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50px;
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #020202;
+    position: absolute;
+    bottom: 60px;
+    right: 20px;                                  
+}
+
+
+.footer-logo {
+    width: 100px;      /* Adjust size as needed */
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.follow {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.icon {
+    display: flex;
+    gap: 10px;  /* Space between icons */
+}
+
+.icon i {
+    font-size: 24px;
+    color: #000000;
+    padding-top: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.icon i:hover {
+    color: #3325f5; /* Icon changes color on hover */
+}
+
+footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f8f8;
+    gap: 10px;
+}
+
+footer .col {
+    flex: 1;
+    margin: 10px;
+    padding: 0 10px;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+footer h4 {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+footer p {
+    font-size: 18px;
+    margin: 0  0 0 8px 0;
+}
+
+footer a{
+    font-size: 18px;
+    text-decoration: none;
+    color: #222
+}
+
+footer a:hover {
+    color: #ce1414;
+}
+.follow {
+    margin-top: 10px;
+    text-align: left; /* Align content to the left */
+    display: flex;
+    flex-direction: column;
+}
+
+.col {
+    flex: 1; /* Makes each column take equal space */
+    margin: 10px;
+    padding: 0 20px; /* Adds some padding between columns */
+}
+
+footer .{
+    width: 100%;
+    text-align: center;
+}
+
+footer .copyright {
+    width: 100%;
+    text-align: center;
 }
