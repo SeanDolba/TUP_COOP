@@ -5,9 +5,36 @@ const morgan = require('morgan');
 const mysql = require('mysql');
 const db = require('./dbConfig');
 const cors = require('cors');
+const path = require('path');
 
 app.use(cors());
 app.options('*', cors());
+
+
+const PORT = process.env.PORT || 3000;
+
+// Serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Redirect root URL to /Home
+app.get('/', (req, res) => {
+    res.redirect('/Home');
+});
+
+// Serve home.html when visiting /Home
+app.get('/Home', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
+
+// Serve shop.html when visiting /Shop
+app.get('/Shop', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'shop.html'));
+});
+
+// Serve blog.html when visiting /Blog
+app.get('/Blog', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'blog.html'));
+});
 
 //Routes (Add new routes here)
 const usersRoute = require('./routers/users');
@@ -55,6 +82,6 @@ app.use(morgan('tiny'));
 
 require('dotenv/config');
 
-app.listen(3000, ()=>{
-    console.log('server is now running http://localhost:3000');
-})
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}/Home`);
+});
