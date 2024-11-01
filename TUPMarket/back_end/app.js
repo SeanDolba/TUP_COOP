@@ -6,12 +6,57 @@ const mysql = require('mysql');
 const db = require('./dbConfig');
 const cors = require('cors');
 const path = require('path');
+const authRoute = require('./routers/auth');
 
+// paymentsRoute.js
+const express = require('express');
+const axios = require('axios');
+const router = express.Router();
+
+app.use('/auth', authRoute);
 app.use(cors());
 app.options('*', cors());
 
 
 const PORT = process.env.PORT || 3000;
+
+// PayMongo Secret Key
+const PAYMONGO_SECRET_KEY = process.env.REACT_APP_PAYMONGO_KEY_SECRET;
+
+router.post('/create-source', async (req, res) => {
+  const { amount, type, currency, redirectUrl } = req.body;
+
+  try {
+    const response = await axios.post(
+      'https://api.paymongo.com/v1/sources',
+      {
+        data: {
+          attributes: {
+            amount,
+            currency,
+            type,
+            redirect: {
+              success: redirectUrl.success,
+              failed: redirectUrl.failed,
+            },
+          },
+        },
+      },
+      {
+        headers: {
+          Authorization: `Basic ${Buffer.from(PAYMONGO_SECRET_KEY).toString('base64')}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    res.status(200).json(response.data);
+  } catch (error) {
+    res.status(500).json({ message: 'Error creating payment source', error: error.message });
+  }
+});
+
+module.exports = router;
 
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -45,8 +90,6 @@ const order_itemsRoute = require('./routers/order_items');
 const categoriesRoute = require('./routers/categories');
 const cartRoute = require('./routers/cart');
 const cart_itemsRoute = require('./routers/cart_items');
-
-
 
 const api = process.env.API_URL;
 
@@ -83,5 +126,5 @@ app.use(morgan('tiny'));
 require('dotenv/config');
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/Home`);
+    console.log(`Server running at http://localhost:${PORT}`);
 });
