@@ -9,7 +9,6 @@ const path = require('path');
 const authRoute = require('./routers/auth');
 
 // paymentsRoute.js
-const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
