@@ -28,6 +28,7 @@ app.use(cors());
 app.options('*', cors());
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
+app.use('/api/payments', paymentsRoute);
 
 // MongoDB connection
 mongoose

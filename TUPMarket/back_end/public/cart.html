@@ -241,6 +241,39 @@ a:hover{
                         <div class="col text-right">&euro; 137.00</div>
                     </div>
                     <button class="btn">CHECKOUT</button>
+
+                    <!--WAG TONG GAGALAWIN-->
+                    <script type="text/javascript">
+                        document.getElementById("checkoutButton").addEventListener("click", async function() {
+                            try {
+                                // Define amount and currency (example: €137.00 = 13700 centavos)
+                                const amount = 137; // Adjust the amount as needed based on your total
+                                const currency = "EUR"; // Adjust the currency as needed
+                                const redirectUrl = {
+                                    success: "https://yourwebsite.com/success",
+                                    failed: "https://yourwebsite.com/failed"
+                                };
+                    
+                                // Send the request to the backend to create the source
+                                const response = await fetch("/create-source", {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({ amount, currency, redirectUrl })
+                                });
+                    
+                                const data = await response.json();
+                                if (data.checkoutUrl) {
+                                    // Redirect the user to the PayMongo checkout page
+                                    window.location.href = data.checkoutUrl;
+                                } else {
+                                    console.error("Failed to get checkout URL");
+                                }
+                            } catch (error) {
+                                console.error("Error initiating checkout:", error);
+                            }
+                        });
+                    </script>
+                    <!--HANGGANG DITO-->
                 </div>
             </div>
             
