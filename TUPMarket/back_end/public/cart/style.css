@@ -3,19 +3,19 @@
   }
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #887d7d; 
   }
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: #5c5555; 
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background:  #C41E3A;
   } body{
-background: #ddd;
+background: #C41E3A;
 min-height: 100vh;
 vertical-align: middle;
 display: flex;
@@ -40,7 +40,7 @@ margin: 3vh auto;
 }
 }
 .cart{
-background-color: #fff;
+background-color: #bdbbbb;
 padding: 4vh 5vh;
 border-bottom-left-radius: 1rem;
 border-top-left-radius: 1rem;
