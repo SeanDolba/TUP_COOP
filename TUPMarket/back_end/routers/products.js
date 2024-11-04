@@ -1,27 +1,42 @@
 const express = require('express');
 const router = express.Router();
-const mysql = require('mysql');
-const db = require('../dbConfig');
+const Product = require('../models/products.js'); // Assuming you have a Mongoose model named Product
 
-router.get(`/`, (req, res) => {
-    const productsList = 'SELECT * FROM products';
-
-    db.query(productsList, (err, results) => {
-        if (err) {
-            console.error('Error retrieving data:', err);
-            return res.status(500).send('An error occurred while retrieving data.');
+// Get all products
+router.get('/', async (req, res) => {
+    try {
+        const products = await Product.find(); // Fetch all products from the database
+        if (!products || products.length === 0) {
+            return res.status(404).json({ success: false, message: 'No products found' });
         }
-
-        if(!productsList){
-            res.status(500).json({success: false})
-        }
-
-        res.send(results);
-    });
+        res.json(products); // Send the list of products as a JSON response
+    } catch (error) {
+        console.error('Error retrieving products:', error);
+        res.status(500).send('An error occurred while retrieving products.');
+    }
 });
 
-router.post(`/`, (req, res) => {
-   
+// Create a new product
+router.post('/', async (req, res) => {
+    const { category_id, product_name, description, price, stock, image_url } = req.body; // Destructure product data from the request body
+
+    try {
+        const newProduct = new Product({
+            category_id,
+            product_name,
+            description,
+            price,
+            stock,
+            image_url,
+            created_at: new Date() // Set created_at to the current date
+        });
+
+        await newProduct.save(); // Save the new product to the database
+        res.status(201).json({ success: true, message: 'Product created', newProduct }); // Respond with the created product
+    } catch (error) {
+        console.error('Error creating product:', error);
+        res.status(500).send('An error occurred while creating the product.');
+    }
 });
 
 module.exports = router;

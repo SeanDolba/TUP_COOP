@@ -1,0 +1,187 @@
+<?php
+    session_start();
+
+	require_once "../db_connection.php";
+
+	$sql = "SELECT * FROM `users`";
+	$all_users = $conn->query($sql);
+
+	$time=time();
+
+    if (isset($_SESSION['email']) && isset($_SESSION['id']) && $_SESSION['role'] == 'admin') {
+       
+	if(isset($_POST['submit'])){
+		$name = mysqli_real_escape_string($conn, $_POST['name']);
+		$email = mysqli_real_escape_string($conn, $_POST['email']);
+		$pass = md5($_POST['password']);
+		$cpass = md5($_POST['cpassword']);
+		$user_type = $_POST['role'];
+
+		$select = "SELECT * FROM `users` WHERE email = '$email' && password = '$pass'";
+
+		$result = mysqli_query($conn, $select);
+
+		if(mysqli_num_rows($result) > 0){
+			$error[] = 'User Already Exist!';
+		} else{
+			if($pass != $cpass){
+				$error[] = 'Password Does Not Match';
+			} else {
+				$insert = "INSERT INTO users(name, email, password, role) VALUES('$name', '$email', '$pass', '$user_type')";
+				mysqli_query($conn, $insert);
+			}
+		}
+		
+	}
+    ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1">
+
+	<title>Admin Dashboard</title>
+	<link rel="stylesheet" 
+		  href="style.css">
+
+	<link rel="stylesheet" 
+		  type="text/css" 
+		  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="sidebar">
+		<div class="logo"></div>
+		<ul class="menu">
+			<li>
+				<a href="dashboard_admin.php">
+					<i class="fas fa-tachometer-alt"></i>
+					<span>Dashboard</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="dashboard_admin_upload.php">
+					<i class="fa-solid fa-arrow-up-from-bracket"></i>
+					<span>Inventory</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="dashboard_admin_accountmanagement.php">
+					<i class="fa-solid fa-users-gear"></i>
+					<span>Account Management</span>
+				</a>
+			</li>
+
+			<li class="logout">
+				<a href="../logout.php">
+					<i class="fa-solid fa-right-from-bracket"></i>
+					<span>Log-Out</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="dashboard_admin_history.php">
+					<i class="fa-solid fa-clock-rotate-left"></i>
+					<span>History</span>
+				</a>
+			</li>
+
+		</ul>
+	</div>
+	<div class="main--content">
+
+		<div class="header--wrapper">
+
+			<div class="header--title">
+				<span>Primary</span>
+				<h2>Account Management</h2>
+			</div>
+
+			<div class="user--info">
+				<div class="search--box">
+				<i class="fa-solid fa-magnifying-glass"></i>
+				<input type="text" 
+				   placeholder="Search"/>
+			</div>
+
+			<img src="profile.jpg" alt="">
+			
+		</div>
+	</div>
+	<div class="card--container">
+		<h3 class="main--title">Account Register</h3>
+
+		
+		<div class="register-container">
+			<form action="" method="post">
+
+			<h3>Register an Account</h3>
+
+			<?php
+			if(isset($error)){
+				foreach($error as $error){
+					echo '<span class="error-msg">'.$error.'</span>';
+				}
+			}
+			?>
+
+
+			<input type="text" name="name" required placeholder="Enter the name">
+			<input type="text" name="email" required placeholder="Enter the email">
+			<input type="password" name="password" required placeholder="Enter the password">
+			<input type="password" name="cpassword" required placeholder="Confirm password">
+			<select name="role">	
+				<option value="admin">Admin</option>
+			</select>
+			<input type="submit" name="submit" value="Register Account" class="register-btn">
+
+			</form>
+
+		</div>
+
+	</div>
+
+		<div class="tabular--wrapper">
+			<h3 class="main--title">Accounts</h3>
+			
+			<div class="table-container">
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Date</th>
+							<th>Name</th>
+							<th>Role</th>
+						</tr>
+					</thead>
+
+<?php 
+	while($row = mysqli_fetch_assoc($all_users)) {
+?>
+					<tbody>
+						<td><?php echo $row['id'];?></td>
+						<td><?php echo $row['date_added'];?></td>
+						<td><?php echo $row['name'];?></td>
+						<td><?php echo $row['role'];?></td>
+					</tbody>
+<?php
+}
+?>
+
+				</table>
+				
+			</div>
+
+		</div>
+
+	</div>
+</body>
+</html>
+
+<?php
+    } else{
+        header("Location: ../Log-in_form.php");
+    }
+?>

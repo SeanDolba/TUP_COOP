@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1">
+
+	<title>Admin Dashboard</title>
+	<link rel="stylesheet" 
+		  href="style.css">
+
+	<link rel="stylesheet" 
+		  type="text/css" 
+		  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<div class="sidebar">
+		<div class="logo"></div>
+		<ul class="menu">
+			<li>
+				<a href="dashboard_admin.html">
+					<i class="fas fa-tachometer-alt"></i>
+					<span>Dashboard</span>
+				</a>
+			</li>
+
+			<li class="active">
+				<a href="dashboard_admin_upload.html">
+					<i class="fa-solid fa-arrow-up-from-bracket"></i>
+					<span>Inventory</span>
+				</a>
+			</li>
+			<li>
+				<a href="dashboard_admin_accountmanagement.html">
+					<i class="fa-solid fa-users-gear"></i>
+					<span>Account Management</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="dashboard_admin_history.html">
+					<i class="fa-solid fa-clock-rotate-left"></i>
+					<span>History</span>
+				</a>
+			</li>
+
+			<li class="logout">
+				<a href="../logout.html">
+					<i class="fa-solid fa-right-from-bracket"></i>
+					<span>Log-Out</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="main--content">
+
+		<div class="header--wrapper">
+
+			<div class="header--title">
+				<span>Primary</span>
+				<h2>Upload</h2>
+			</div>
+
+			<div class="user--info">
+				<div class="search--box">
+				<i class="fa-solid fa-magnifying-glass"></i>
+				<input type="text" 
+				   placeholder="Search"/>
+			</div>
+
+			<img src="profile.jpg" alt="">
+			
+		</div>
+	</div>
+	
+	<div class="card--container light-gray">
+        <h3 class="main--title">Upload Media</h3>
+        <form action="../php/upload_file.php" method="post" enctype="multipart/form-data" class="upload-form">
+
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price (₱):</label>
+                <input type="number" id="price" name="price" step="0.01" required>
+            </div>
+
+			<div class="form-group">
+                <label for="price">Quantity:</label>
+                <input type="number" id="quantity" name="quantity_stored" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mediaCover">Upload Media Cover (Image):</label>
+                <input type="file" id="mediaCover" name="mediaCover" accept="image/png, image/jpeg">
+            </div>
+
+            <button type="submit" class="btn btn-animate" name="add_media">Submit</button>
+        </form>
+    </div>
+
+	<!--for product-->
+
+<!--REPRINTING PRODUCT STARTS HERE-->
+<div class="gallery">
+
+		<div class="content">
+
+			<img src="" class="product_image">
+			<h3 class="product_title"></h3>
+
+			
+
+			<h6 class="product_price">₱</h6>
+
+			<button class="info_button">More Info!</button>
+
+		</div>
+
+		<div class="popup-view">
+		<div class="popup-card">
+			<a><i class="fas fa-times close-btn"></i></a>
+			
+			<div class="product_image_popup">
+				<img src="" class="popup_image">
+			</div>
+
+			<div class="product_description_popup">
+				<h2 class="title_popup"><br><span class="span_title"></span></h2>
+				<p class="popup_p"></p>
+				<span class="product_price_popup">₱</span>
+				<span class="product_price_popup"> pieces</span>
+				<a href="#" class="contact_us">Edit in dashboard</a>
+					
+			</div>
+				
+		</div>
+			
+</div>
+<!--FINAL DIV HERE FOR REPRINTING-->
+
+	</div>
+
+</div>
+
+
+	</div>
+
+
+
+	
+	</div>
+</body>
+
+<script type="text/javascript">
+	var popupViews = document.querySelectorAll('.popup-view');
+	var popupBtns = document.querySelectorAll('.info_button');
+	var closeBtns = document.querySelectorAll('.close-btn');
+
+	//js for popup button
+	var popup = function(popupClick){
+		popupViews[popupClick].classList.add('active');
+	}
+
+	popupBtns.forEach((popupBtn, i) => {
+		popupBtn.addEventListener("click", () => {
+			popup(i);
+		});
+	});
+
+	//js for close button
+	closeBtns.forEach((closeBtn) => {
+		closeBtn.addEventListener("click", () => {
+			popupViews.forEach((popupView) => {
+				popupView.classList.remove('active');
+			});
+		});
+	});
+		
+	
+
+</script>
+
+</html>
