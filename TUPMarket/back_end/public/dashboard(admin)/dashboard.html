@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1">
+
+	<title>Admin Dashboard</title>
+	<link rel="stylesheet" 
+		  href="style.css">
+
+	<link rel="stylesheet" 
+		  type="text/css" 
+		  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+	<div class="sidebar">
+		<div class="logo"></div>
+		<ul class="menu">
+			<li class="active">
+				<a href="dashboard_admin.php">
+					<i class="fas fa-tachometer-alt"></i>
+					<span>Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="dashboard_admin_profile.php">
+					<i class="fas fa-user"></i>
+					<span>Profile</span>
+				</a>
+			</li>
+			<li>
+				<a href="dashboard_admin_upload.php">
+					<i class="fa-solid fa-arrow-up-from-bracket"></i>
+					<span>Upload</span>
+				</a>
+			</li>
+			<li>
+				<a href="dashboard_admin_accountmanagement.php">
+					<i class="fa-solid fa-users-gear"></i>
+					<span>Account Management</span>
+				</a>
+			</li>
+			<li>
+				<a href="dashboard_admin_settings.php">
+					<i class="fa-solid fa-gears"></i>
+					<span>Settings</span>
+				</a>
+			</li>
+			<li class="logout">
+				<a href="../logout.php">
+					<i class="fa-solid fa-right-from-bracket"></i>
+					<span>Log-Out</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="main--content">
+
+		<div class="header--wrapper">
+
+			<div class="header--title">
+				<span>Primary</span>
+				<h2>Dashboard</h2>
+			</div>
+
+			<div class="user--info">
+				<div class="search--box">
+				<i class="fa-solid fa-magnifying-glass"></i>
+				<input type="text" 
+				   placeholder="Search"/>
+			</div>
+
+			<img src="profile.jpg" alt="">
+			
+		</div>
+	</div>
+	<div class="card--container">
+		<h3 class="main--title">Today's Data</h3>
+		<div class="card--wrapper">
+			<div class="payment--card">
+				<div class="card--header">
+					<div class="amount">
+						
+						<span class="title">
+							People Visited
+						</span>
+						<span class="amount--value">
+							10000
+						</span>
+
+					</div>
+
+					<i class="fa-solid fa-people-group icon"></i>
+
+				</div>
+
+				<span class="card--details">
+					
+				</span>
+
+			</div>
+		</div>
+
+	</div>
+	</div>
+</body>
+</html>
